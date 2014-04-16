@@ -1,0 +1,88 @@
+#!/usr/bin/env node
+
+var util = require("util");
+var fs = require("fs");
+var path = require("path");
+
+var peg = require('pegjs');
+var overrideAction = require('pegjs-override-action');
+
+var inputFile = "resources/grammer.pegjs";
+var exportVar = "var PEG";
+
+/* generate DT header parser */
+
+var inputStream = fs.createReadStream(inputFile);
+inputStream.on("error", function () {
+	abort("Can't read from file \"" + inputFile + "\".");
+});
+
+var outputStream = process.stdout;
+outputStream.on("error", function () {
+	abort("Can't write to stdout.");
+});
+
+var options =
+{
+	cache: true,
+	output: "source",
+	optimize: "speed",
+	plugins: [overrideAction],
+	overrideActionPlugin: {
+		rules: {
+			Header: function () {
+				return {
+					syntax: "Header",
+					line: line(),
+					column: column(),
+					offset: offset(),
+					endPos: peg$currPos,
+					tmp: tmp
+				};
+			}
+		}
+	}
+};
+
+readStream(inputStream, function (input) {
+	try {
+		var source = peg.buildParser(input, options);
+	} catch (e) {
+		if (e.line !== undefined && e.column !== undefined) {
+			abort(e.line + ":" + e.column + ": " + e.message);
+		} else {
+			abort(e.message);
+		}
+	}
+
+	outputStream.write(
+		exportVar !== "" ? exportVar + " = " + source + ";\n" : source + "\n"
+	);
+	if (outputStream !== process.stdout) {
+		outputStream.end();
+	}
+});
+
+/* from pegjs */
+function exitSuccess() {
+	process.exit(0);
+}
+
+function exitFailure() {
+	process.exit(1);
+}
+
+function abort(message) {
+	util.error(message);
+	exitFailure();
+}
+
+function readStream(inputStream, callback) {
+	var input = "";
+	inputStream.on("data", function (data) {
+		input += data;
+	});
+	inputStream.on("end", function () {
+		callback(input);
+	});
+}

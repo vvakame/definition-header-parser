@@ -1,0 +1,19 @@
+# for IDE (WebStorm)
+.idea/
+
+# for npm
+node_modules/
+
+# for grunt tasks
+.tscache/
+
+# for tsd
+typings/
+
+# generated code
+lib/**/*.js
+lib/**/*.js.map
+test/suite/**/*.js
+test/suite/**/*.js.map
+test/suiteEspowered/**/*.js
+resources/*.js
