@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Grammar example</title>
+    <script type="application/javascript" src="../resources/grammer.js"></script>
+    <script type="application/javascript">
+        window.onload = function () {
+            document.querySelector("#process").addEventListener("click", function(){
+                var input = document.querySelector("#input").value;
+                var result = PEG.parse(input);
+                document.querySelector("#result").innerText = JSON.stringify(result, null, 2);
+            });
+        };
+    </script>
+</head>
+<body>
+    <textarea id="input" cols="60" rows="4">
+// Type definitions for FooModule 0.1.23
+// Project: http://foo.org/
+// Definitions by: Jimmy Foo <https://github.xyz/x/foo/>
+// Definitions: https://github.com/borisyankov/DefinitelyTyped
+    </textarea>
+    <br>
+    <button id="process">Process</button>
+    <br>
+    <pre id="result"></pre>
+</body>
+</html>

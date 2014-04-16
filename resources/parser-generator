@@ -37,9 +37,67 @@ var options =
 					column: column(),
 					offset: offset(),
 					endPos: peg$currPos,
-					tmp: tmp
+					module: module,
+					project: project,
+					author: author,
+					definitions: definitions
 				};
-			}
+            },
+            ModuleNameLine: function () {
+                return {
+                    syntax: "ModuleNameLine",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    name: name,
+                    version: version
+                };
+            },
+            ProjectInfoLine: function () {
+                return {
+                    syntax: "ProjectInfoLine",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    url: url
+                };
+            },
+            DefinitionAuthorLine: function () {
+                return {
+                    syntax: "DefinitionAuthorLine",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    authorInfo: authorInfo
+                };
+            },
+            AuthorInfo: function () {
+                return {
+                    syntax: "AuthorInfo",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    name: name,
+                    url: url
+                };
+            },
+            AuthorHomepage: function () {
+                return url;
+            },
+            DefinitionsLine: function () {
+                return {
+                    syntax: "DefinitionsLine",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    url: url
+                };
+            }
 		}
 	}
 };
