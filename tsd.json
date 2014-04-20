@@ -19,6 +19,12 @@
         },
         "assert/assert.d.ts": {
             "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+        },
+        "glob/glob.d.ts": {
+            "commit": "93b01da4f3d2b096d74990cf19d8b49f5a516764"
+        },
+        "minimatch/minimatch.d.ts": {
+            "commit": "93b01da4f3d2b096d74990cf19d8b49f5a516764"
         }
     }
 }

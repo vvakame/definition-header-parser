@@ -1,37 +1,41 @@
 // sample...
 Header "header"
-    = module:ModuleNameLine project:ProjectInfoLine author:DefinitionAuthorLine definitions:DefinitionsLine .*
+    = BOM? module:ModuleNameLine project:ProjectInfoLine authors:DefinitionAuthorLine+ definitions:DefinitionsLine .*
     ;
 
 ModuleNameLine
-    = "//" _ "Type definitions for" Space _ name:ModuleName version:ModuleVersion Newline
+    = "//" _ "Type definitions for" Space _ name:ModuleName version:ModuleVersion? _ Newline
     ;
 
 ModuleName "module name"
     = $((!ModuleVersion !Newline .)+)
     ;
 
-// TODO
+// TODO range support
 ModuleVersion "module version"
-    = $(([0-9]+ ".")* [0-9]+)
+    = $(Semver)
+    / $("v" Digits ("." Digits)+)
     ;
 
-// TODO
 Semver "semantic version"
-    = ""
+    = major:Digits "." minor:Digits "." patch:Digits ( "-" pre:( [0-9A-Za-z-.]+ ) )? ( "+" meta:( [0-9A-Za-z-.]+ ) )?
+    ;
+
+Digits "digits"
+    = $([0-9]+)
     ;
 
 ProjectInfoLine
-    = "//" _ "Project:" _ url:Url Newline
+    = "//" _ "Project:" _ url:Url _ Newline
     ;
 
-// TODO
+// TODO if improve Url pattern, we can optimization other part.
 Url "url"
-    = $("http" (!Newline [^>])+)
+    = $("http" "s"? "://" (!Newline !Space [^<>])+)
     ;
 
 DefinitionAuthorLine
-    = "//" _ "Definitions by:" _ authorInfo:AuthorInfo Newline
+    = "//" _ "Definitions by:" _ authorInfo:AuthorInfo authorInfos:(_ ("," / "and" / (Newline "//")) _ AuthorInfo)* _ Newline
 
 AuthorInfo
     = name:AuthorName url:AuthorHomepage
@@ -46,7 +50,7 @@ AuthorHomepage "author homepage"
     ;
 
 DefinitionsLine
-    = "//" _ "Definitions:" _ url:Url Newline
+    = "//" _ ("Definitions:" / "DefinitelyTyped:") _ url:Url _ Newline
     ;
 
 Newline "newline"
@@ -59,5 +63,9 @@ _ "spacer"
     ;
 
 Space "space"
-    = [ 　\t]
+    = [ 　\t\v\f]
+    ;
+
+BOM
+    = [\uFEFF]
     ;

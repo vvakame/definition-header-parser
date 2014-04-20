@@ -56,11 +56,11 @@
             "catchClause",
             "indexSignature",
             "parameter",
-            "propertySignature",
-            "variableDeclarator"
+            "propertySignature"
         ],
         "_typedef": [
-            "callSignature"
+            "callSignature",
+            "variableDeclarator"
         ],
         "typedef-whitespace": [true,
             ["callSignature", "noSpace"],

@@ -43,6 +43,7 @@ module.exports = function (grunt) {
             files: {
                 src: [
                     '<%= opt.client.tsMain %>/**/*.ts',
+                    '!<%= opt.client.tsMain %>/PEG-definition.d.ts',
                     '<%= opt.client.tsTest %>/**/*.ts'
                 ]
             }
@@ -78,13 +79,14 @@ module.exports = function (grunt) {
             clientScript: {
                 src: [
                     // client
-                    '<%= opt.client.jsMainOut %>/*.js',
-                    '<%= opt.client.jsMainOut %>/*.d.ts',
-                    '<%= opt.client.jsMainOut %>/*.js.map',
+                    '<%= opt.client.tsMain %>/*.js',
+                    '<%= opt.client.tsMain %>/*.d.ts',
+                    '<%= opt.client.tsMain %>/*.js.map',
+                    '!<%= opt.client.tsMain %>/PEG-definition.d.ts',
                     // client test
-                    '<%= opt.client.jsTestOut %>/*.js',
-                    '<%= opt.client.jsTestOut %>/*.js.map',
-                    '<%= opt.client.jsTestOut %>/*.d.ts',
+                    '<%= opt.client.tsTest %>/*.js',
+                    '<%= opt.client.tsTest %>/*.js.map',
+                    '<%= opt.client.tsTest %>/*.d.ts',
                     // peg.js
                     '<%= opt.client.peg %>/grammer.js'
                 ]

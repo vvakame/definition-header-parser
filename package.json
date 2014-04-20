@@ -21,6 +21,9 @@
         "pegjs": "0.8.0",
         "pegjs-override-action": "0.0.7",
 
+        "glob": "3.2.9",
+        "minimatch": "0.2.14",
+
         "grunt-ts": "1.10.0",
         "typescript": "1.0.0",
         "grunt-tslint": "0.4.1",

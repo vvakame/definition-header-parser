@@ -14,34 +14,36 @@ var exportVar = "var PEG";
 
 var inputStream = fs.createReadStream(inputFile);
 inputStream.on("error", function () {
-	abort("Can't read from file \"" + inputFile + "\".");
+    abort("Can't read from file \"" + inputFile + "\".");
 });
 
 var outputStream = process.stdout;
 outputStream.on("error", function () {
-	abort("Can't write to stdout.");
+    abort("Can't write to stdout.");
 });
 
 var options =
 {
-	cache: true,
-	output: "source",
-	optimize: "speed",
-	plugins: [overrideAction],
-	overrideActionPlugin: {
-		rules: {
-			Header: function () {
-				return {
-					syntax: "Header",
-					line: line(),
-					column: column(),
-					offset: offset(),
-					endPos: peg$currPos,
-					module: module,
-					project: project,
-					author: author,
-					definitions: definitions
-				};
+    cache: true,
+    output: "source",
+    optimize: "speed",
+    plugins: [overrideAction],
+    overrideActionPlugin: {
+        rules: {
+            Header: function () {
+                return {
+                    syntax: "Header",
+                    line: line(),
+                    column: column(),
+                    offset: offset(),
+                    endPos: peg$currPos,
+                    module: module,
+                    project: project,
+                    authors: authors.reduce(function (as, bs) {
+                        return as.concat(bs);
+                    }),
+                    definitions: definitions
+                };
             },
             ModuleNameLine: function () {
                 return {
@@ -65,14 +67,9 @@ var options =
                 };
             },
             DefinitionAuthorLine: function () {
-                return {
-                    syntax: "DefinitionAuthorLine",
-                    line: line(),
-                    column: column(),
-                    offset: offset(),
-                    endPos: peg$currPos,
-                    authorInfo: authorInfo
-                };
+                return [authorInfo].concat(authorInfos.map(function (data) {
+                    return data[3];
+                }));
             },
             AuthorInfo: function () {
                 return {
@@ -98,49 +95,49 @@ var options =
                     url: url
                 };
             }
-		}
-	}
+        }
+    }
 };
 
 readStream(inputStream, function (input) {
-	try {
-		var source = peg.buildParser(input, options);
-	} catch (e) {
-		if (e.line !== undefined && e.column !== undefined) {
-			abort(e.line + ":" + e.column + ": " + e.message);
-		} else {
-			abort(e.message);
-		}
-	}
+    try {
+        var source = peg.buildParser(input, options);
+    } catch (e) {
+        if (e.line !== undefined && e.column !== undefined) {
+            abort(e.line + ":" + e.column + ": " + e.message);
+        } else {
+            abort(e.message);
+        }
+    }
 
-	outputStream.write(
-		exportVar !== "" ? exportVar + " = " + source + ";\n" : source + "\n"
-	);
-	if (outputStream !== process.stdout) {
-		outputStream.end();
-	}
+    outputStream.write(
+            exportVar !== "" ? exportVar + " = " + source + ";\n" : source + "\n"
+    );
+    if (outputStream !== process.stdout) {
+        outputStream.end();
+    }
 });
 
 /* from pegjs */
 function exitSuccess() {
-	process.exit(0);
+    process.exit(0);
 }
 
 function exitFailure() {
-	process.exit(1);
+    process.exit(1);
 }
 
 function abort(message) {
-	util.error(message);
-	exitFailure();
+    util.error(message);
+    exitFailure();
 }
 
 function readStream(inputStream, callback) {
-	var input = "";
-	inputStream.on("data", function (data) {
-		input += data;
-	});
-	inputStream.on("end", function () {
-		callback(input);
-	});
+    var input = "";
+    inputStream.on("data", function (data) {
+        input += data;
+    });
+    inputStream.on("end", function () {
+        callback(input);
+    });
 }

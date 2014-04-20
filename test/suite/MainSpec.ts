@@ -1,6 +1,8 @@
 /// <reference path="../../typings/mocha/mocha.d.ts" />
 /// <reference path="../../typings/assert/assert.d.ts" />
 
+/// <reference path="./DTTestSpec.ts" />
+
 import assert = require("power-assert");
 
 module Test {
