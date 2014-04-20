@@ -39,14 +39,6 @@ $ ./bin/dthp dt/atom/atom.d.ts
 ```
 
 ```
-$ ./bin/dthp dt/atom/atom.d.ts
-// Type definitions for Atom
-// Project: https://atom.io/
-// Definitions by: vvakame <https://github.com/vvakame/>
-// Definitions: https://github.com/borisyankov/DefinitelyTyped
-```
-
-```
 $ ./bin/dthp --show-original dt/atom/atom.d.ts
 original:
 
