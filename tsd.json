@@ -6,25 +6,25 @@
     "bundle": "typings/tsd.d.ts",
     "installed": {
         "node/node.d.ts": {
-            "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "commander/commander.d.ts": {
-            "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "colors/colors.d.ts": {
-            "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "mocha/mocha.d.ts": {
-            "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "assert/assert.d.ts": {
-            "commit": "60de451071bb605b089f2fa70bc9e1396cce2f41"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "glob/glob.d.ts": {
-            "commit": "93b01da4f3d2b096d74990cf19d8b49f5a516764"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         },
         "minimatch/minimatch.d.ts": {
-            "commit": "93b01da4f3d2b096d74990cf19d8b49f5a516764"
+            "commit": "ab0eb0a77a5f9bed5d332fbc0fd43b6735932c9c"
         }
     }
 }
