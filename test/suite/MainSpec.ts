@@ -2,15 +2,4 @@
 /// <reference path="../../typings/assert/assert.d.ts" />
 
 /// <reference path="./DTTestSpec.ts" />
-
-import assert = require("power-assert");
-
-module Test {
-	"use strict";
-
-	describe("sample describe", () => {
-		it("sample it", () => {
-			assert([1, 2, 3].length === 3);
-		});
-	});
-}
+/// <reference path="./ApiSpec.ts" />

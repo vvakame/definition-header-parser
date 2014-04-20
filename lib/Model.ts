@@ -1,9 +1,9 @@
 export interface IPegInfo {
-	syntax: string;
-	line: number;
-	column: number;
-	offset: number;
-	endPost: number;
+	syntax?: string;
+	line?: number;
+	column?: number;
+	offset?: number;
+	endPost?: number;
 }
 
 export interface IHeader extends IPegInfo {

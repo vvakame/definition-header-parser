@@ -52,7 +52,7 @@ var options =
                     column: column(),
                     offset: offset(),
                     endPos: peg$currPos,
-                    name: name,
+                    name: name.trim(),
                     version: version
                 };
             },
@@ -78,7 +78,7 @@ var options =
                     column: column(),
                     offset: offset(),
                     endPos: peg$currPos,
-                    name: name,
+                    name: name.trim(),
                     url: url
                 };
             },

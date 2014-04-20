@@ -55,11 +55,11 @@
         "typedef": [true,
             "catchClause",
             "indexSignature",
-            "parameter",
             "propertySignature"
         ],
         "_typedef": [
             "callSignature",
+            "parameter",
             "variableDeclarator"
         ],
         "typedef-whitespace": [true,
@@ -76,7 +76,9 @@
             "check-branch",
             "check-decl",
             "check-operator",
-            "check-separator",
+            "check-separator"
+        ],
+        "_whitespace": [
             "check-type"
         ]
     }
