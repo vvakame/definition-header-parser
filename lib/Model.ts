@@ -3,7 +3,7 @@ export interface IPegInfo {
 	line?: number;
 	column?: number;
 	offset?: number;
-	endPost?: number;
+	endPos?: number;
 }
 
 export interface IHeader extends IPegInfo {

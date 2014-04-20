@@ -106,6 +106,7 @@ module.exports = function (grunt) {
                 },
                 src: [
                     '<%= opt.client.tsMain %>/*.js',
+                    '!<%= opt.client.tsMain %>/Cli.js',
                     '<%= opt.client.jsEspowerOut %>/*.js'
                 ]
             }

@@ -35,7 +35,14 @@ Url "url"
     ;
 
 DefinitionAuthorLine
-    = "//" _ "Definitions by:" _ authorInfo:AuthorInfo authorInfos:(_ ("," / "and" / (Newline "//")) _ AuthorInfo)* _ Newline
+    = "//" _ "Definitions by:" _ authorInfo:AuthorInfo authorInfos:(_ AuthorDivider _ AuthorInfo)* _ Newline
+
+AuthorDivider
+    = ","
+    / "and"
+    / Newline _ "//" _ "Definitions by:"
+    / Newline "//"
+    ;
 
 AuthorInfo
     = name:AuthorName url:AuthorHomepage
