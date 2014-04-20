@@ -1,4 +1,3 @@
-// sample...
 Header "header"
     = BOM? module:ModuleNameLine project:ProjectInfoLine authors:DefinitionAuthorLine+ definitions:DefinitionsLine .*
     ;
