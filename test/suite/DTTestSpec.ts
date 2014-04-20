@@ -93,7 +93,6 @@ module Test {
 			"scroller/easyscroller.d.ts",
 			"scroller/scroller.d.ts",
 			"should/should.d.ts",
-			"space-pen/space-pen.d.ts",
 			"state-machine/state-machine.d.ts",
 			"svgjs.draggable/svgjs.draggable.d.ts",
 			"titanium/titanium.d.ts",
